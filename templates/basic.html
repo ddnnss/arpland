@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if IE 8]>          <html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>          <html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="ru">
+<!--<![endif]-->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Polygon - Responsive Multipurpose Landing Page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %} ">
+
+    <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/prettyphoto.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %} ">
+    <link rel="stylesheet" href="{% static 'js/vendors/owl-carousel/owl.theme.css' %} ">
+    <link rel="stylesheet" href="{% static 'js/vendors/owl-carousel/owl.carousel.css' %} ">
+    <link rel="stylesheet" href="{% static 'js/vendors/owl-carousel/owl.transitions.css' %} ">
+    <link rel="stylesheet" href="{% static 'js/vendors/slick/slick.css' %} ">
+    <link rel="stylesheet" href="{% static 'js/vendors/swipebox/css/swipebox.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/style.css' %} ">
+
+    <link rel='stylesheet' href="{% static 'js/revolution/css/settings.css' %} " type="text/css">
+    <link rel='stylesheet' href="{% static 'js/revolution/css/layers.css' %} " type="text/css">
+    <link rel='stylesheet' href="{% static 'js/revolution/css/navigation.css' %} " type="text/css">
+    <link rel='stylesheet' href="{% static 'js/revolution/css/settings2.css' %} " type="text/css">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="header01">
+
+
+    {% include 'header.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'footer.html' %}
+</div> <!-- class="wrapper" id="wrapper" -->
+<a class="scrollup" title="Go to top"><i class="fa fa-angle-up"></i></a>
+
+<script src="{% static 'js/jquery.js' %} "></script>
+<script src="{% static 'js/bootstrap.min.js' %} "></script>
+<script src="{% static 'js/vendors/owl-carousel/owl.carousel.min.js' %} "></script>
+<script src="{% static 'js/vendors/easypie/jquery.easypiechart.min.js' %} "></script>
+<script src="{% static 'js/vendors/slick/slick.min.js' %} "></script>
+<script src="{% static 'js/vendors/jquery.counterup.min.js' %} "></script>
+<script src="{% static 'js/vendors/waypoints.min.js' %} "></script>
+<script src="{% static 'js/vendors/tweecool.min.js' %} "></script>
+<script src="{% static 'js/vendors/snap.min.js' %} "></script>
+<script src="{% static 'js/vendors/jquery.prettyPhoto.js' %} "></script>
+<script src="{% static 'js/main.js' %} "></script>
+<script src="{% static 'js/vendors/isotope/isotope.pkgd.js' %} "></script>
+<script src="{% static 'js/vendors/isotope/main.js' %} "></script>
+<script src="{% static 'js/vendors/swipebox/js/jquery.swipebox.min.js' %} "></script>
+<script src="{% static 'js/vendors/swipebox/js/main.js' %} "></script>
+ {% block js %}
+ {% endblock %}
+
+</body>
+
+</html>
