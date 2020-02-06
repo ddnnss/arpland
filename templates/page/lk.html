@@ -47,14 +47,7 @@
                                                 <h5 class="text-uppercase">Category</h5>
                                                 <span class="metadata"><a href="#" rel="tag">Photography</a></span>
                                             </div>
-                                            <div>
-                                                <h5 class="text-uppercase">Share</h5>
-                                                <div class="metadata">
-                                                    <span><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></span>
-                                                    <span><a target="_blank" href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a></span>
-                                                    <span><a target="_blank" href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></span>
-                                                </div>
-                                            </div>
+
 
                                             <div class="btn-visit-site">
                                                 <a class="bttn text-uppercase" href="{% url 'profile_edit' %}">Редактировать профиль</a>
@@ -75,46 +68,41 @@
                                         </div>
                                     </div>
                                 </div>
-                                <nav class="navigation post-navigation">
-                                    <h2 class="screen-reader-text">Post navigation</h2>
-                                    <div class="nav-links">
-                                        <div class="nav-previous"><a href="#" rel="prev">Black Horse Project</a></div>
-                                        <a class="portfolio-home-btn" href="#"></a>
-                                        <div class="nav-next"><a href="#" rel="next">Gallery</a></div>
-                                    </div>
-                                </nav>
+
                             </div>
                         </article>
                         <div class="related-projects">
-                            <h4 class="related-projects-title text-center">Related projects</h4>
+                            <h4 class="related-projects-title text-center">Размещенные текстовые объявления</h4>
                             <div class="row">
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <a href="portfolio-single-video_gallery.html">
+                                {% for ad in all_text_ad %}
+                                  <div class="col-md-3 col-sm-4 text-center">
+                                    <a href="{% url 'text_ad' ad.name_slug %}">
                                         <div class="project-thumb">
-                                            <img src="images/other/paper.jpg" class="img-responsive" alt="">
+                                            <img src="{{ ad.image.url }}" class="img-responsive" alt="">
                                         </div>
                                     </a>
-                                    <h5 class="project-title"><a href="portfolio-single-video_gallery.html">Video and Gallery</a></h5>
-                                    <span></span>Branding
+                                    <h5 class="project-title"><a href="{% url 'text_ad' ad.name_slug %}">{{ ad.name }}</a></h5>
+ <span>{{ ad.views }} просмотров</span>
                                 </div>
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <a href="portfolio-single-image_gallery.html">
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="related-projects">
+                            <h4 class="related-projects-title text-center">Размещенные видео объявления</h4>
+                            <div class="row">
+                                              {% for ad in all_video_ad %}
+                                  <div class="col-md-3 col-sm-4 text-center">
+                                    <a href="{% url 'video_ad' ad.name_slug %}">
                                         <div class="project-thumb">
-                                            <img src="images/other/paper.jpg" class="img-responsive" alt="">
+                                            <img src="{{ ad.image.url }}" class="img-responsive" alt="">
                                         </div>
                                     </a>
-                                    <h5 class="project-title"><a href="portfolio-single-image_gallery.html">Image and Gallery</a></h5>
-                                    <span></span>Branding
+                                    <h5 class="project-title"><a href="{% url 'video_ad' ad.name_slug %}">{{ ad.name }}</a></h5>
+                                  <span>{{ ad.views }} просмотров</span>
+
                                 </div>
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <a href="portfolio-single-gallery.html">
-                                        <div class="project-thumb">
-                                            <img src="images/other/paper.jpg" class="img-responsive" alt="">
-                                        </div>
-                                    </a>
-                                    <h5 class="project-title"><a href="portfolio-single-gallery.html">Gallery</a></h5>
-                                    <span></span>Branding
-                                </div>
+                                {% endfor %}
+
                             </div>
                         </div>
                     </div>

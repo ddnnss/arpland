@@ -25,6 +25,8 @@ def index(request):
 
 
 def profile(request):
+    all_text_ad = AdTextPost.objects.filter(author=request.user)
+    all_video_ad = AdVideoPost.objects.filter(author=request.user)
     return render(request, 'page/lk.html', locals())
 
 def about(request):

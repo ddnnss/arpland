@@ -25,9 +25,14 @@ class BlogPost(models.Model):
         slug = slugify(self.name)
         testSlug = BlogPost.objects.filter(name_slug=slug)
         slugRandom = ''
-        if not testSlug:
-            slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
-        self.name_slug = slug + slugRandom
+        if not self.name_slug:
+            slug = slugify(self.name)
+            testSlug = BlogPost.objects.filter(name_slug=slug)
+            if testSlug:
+                slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
+                self.name_slug = slug + slugRandom
+            else:
+                self.name_slug = slug
         self.name_lower = self.name.lower()
         super(BlogPost, self).save(*args, **kwargs)
     def get_absolute_url(self):

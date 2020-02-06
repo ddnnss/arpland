@@ -55,7 +55,7 @@
                             <article class="post type-post blog-entry">
                                 <div class="recent-posts__item row">
                                     <div class="recent-posts__thumb col-md-6">
-                                        <a href="blog-single-standard.html">
+                                        <a href="{% url 'news' post.name_slug%}">
                                             <img src="{{ post.image.url }}" class="img-responsive" alt="" />
                                         </a>
                                     </div>
@@ -63,17 +63,17 @@
                                         <div style="height: 60px; width: 130px;" class="dates">
                                             <span >{{ post.created_at | date }}</span>
                                         </div>
-                                        <div class="post-meta">
-    <span class="post-com">
-    <i class="fa fa-folder-open"></i> <a href="blog.html">Anything</a>, <a href="blog.html">Business</a> </span>
-                                            <span class="author">
-    <i class="fa fa-user"></i> {{ post.author.name }} </span>
-                                        </div>
-                                        <h4><a href="blog-single-standard.html">{{ post.name }}</a></h4>
+{#                                        <div class="post-meta">#}
+{#    <span class="post-com">#}
+{#    <i class="fa fa-folder-open"></i> <a href="blog.html">Anything</a>, <a href="blog.html">Business</a> </span>#}
+{#                                            <span class="author">#}
+{#    <i class="fa fa-user"></i> {{ post.author.name }} </span>#}
+{#                                        </div>#}
+                                        <h4><a href="{% url 'news' post.name_slug%}">{{ post.name }}</a></h4>
                                         <div class="blog-entry-excerpt">
                                             <p>{{ post.short_description }}</p>
                                         </div>
-                                        <a class="bttn" href="blog-single-standard.html">Читать</a>
+                                        <a class="bttn" href="{% url 'news' post.name_slug%}">Читать</a>
                                     </div>
                                 </div>
                             </article>
@@ -153,9 +153,9 @@
                     {% for textAd in textAds%}
                         <div class="col-md-3 col-sm-6 product type-product sale instock">
                             <div class="image-product-contain">
-{#                                <span class="onsale">Sale!</span>#}
+                                {#                                <span class="onsale">Sale!</span>#}
                                 <img src="{{ textAd.image.url }}" class="img-responsive" alt="" />
-{#                                <a href="shop-cart.html" class="bttn add_to_cart_button"><span class="pe-7s-shopbag"></span></a>#}
+                                {#                                <a href="shop-cart.html" class="bttn add_to_cart_button"><span class="pe-7s-shopbag"></span></a>#}
                                 <a style="left: 110px" href="#" class="prettyPhoto bttn bttn-view-detail skin-fill-blue"><span class="pe-7s-search"></span></a>
                                 <h6 class="text-uppercase">Подробнее</h6>
                             </div>
@@ -177,11 +177,11 @@
                 </div>
                 <div class="row">
                     {% for videoAd in videoAds%}
-                      <div class="col-md-3 col-sm-6 product type-product sale instock">
+                        <div class="col-md-3 col-sm-6 product type-product sale instock">
                             <div class="image-product-contain">
-{#                                <span class="onsale">Sale!</span>#}
+                                {#                                <span class="onsale">Sale!</span>#}
                                 <img src="{{ videoAd.image.url }}" class="img-responsive" alt="" />
-{#                                <a href="shop-cart.html" class="bttn add_to_cart_button"><span class="pe-7s-shopbag"></span></a>#}
+                                {#                                <a href="shop-cart.html" class="bttn add_to_cart_button"><span class="pe-7s-shopbag"></span></a>#}
                                 <a style="left: 110px" href="{% url 'video_ad' videoAd.name_slug %}" class="prettyPhoto bttn bttn-view-detail skin-fill-blue"><span class="pe-7s-search"></span></a>
                                 <h6 class="text-uppercase">Подробнее</h6>
                             </div>
