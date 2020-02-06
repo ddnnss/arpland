@@ -3,7 +3,7 @@ from .models import *
 
 
 
-class CreateAdTextPostForm(forms.ModelForm):  
+class CreateAdTextPostForm(forms.ModelForm):
 
     class Meta:
         model = AdTextPost

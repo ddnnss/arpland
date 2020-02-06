@@ -59,22 +59,22 @@
                                 <ul id="primary-menu" class="menu">
 
                                     <li class="menu-item ">
-                                        <a href="index.html">ГЛАВНАЯ</a>
+                                        <a href="/">ГЛАВНАЯ</a>
                                     </li>
                                     <li class="menu-item ">
-                                        <a href="index.html">КОМПАНИИ</a>
+                                        <a href="{% url 'companies' %}">КОМПАНИИ</a>
                                     </li>
                                     <li class="menu-item ">
-                                        <a href="index.html">ВИДЕО</a>
+                                        <a href="{% url 'video_ads' %}">ВИДЕО</a>
                                     </li>
                                     <li class="menu-item ">
-                                        <a href="index.html">ОБЪЯВЛЕНИЯ </a>
+                                        <a href="{% url 'text_ads' %}">ОБЪЯВЛЕНИЯ </a>
                                     </li>
                                     <li class="menu-item ">
-                                        <a href="index.html">О НАС</a>
+                                        <a href="{% url 'about' %}">О НАС</a>
                                     </li>
                                     <li class="menu-item ">
-                                        <a href="index.html">КОНТАКТЫ</a>
+                                        <a href="{% url 'contact' %}">КОНТАКТЫ</a>
                                     </li>
                                     {% if  not request.user.is_authenticated %}
                                      <li class="menu-item ">

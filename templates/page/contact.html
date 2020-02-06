@@ -1,0 +1,111 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+<div class="big-title">
+<div class="container container-full">
+<div class="row">
+<div class="col-md-6 text-uppercase">
+<h1>Контакты</h1>
+</div>
+<div class="col-md-6">
+<ul class="bread_crumb pull-right">
+<li><a href="/">Главная</a></li>
+<li>Контакты</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="padding-100">
+<div class="container">
+<div class="row">
+<div class="col-sm-3">
+<div class="contact-info text-center">
+<span class="pe-7s-map-marker"></span>
+<h4>ADDRESS</h4>
+<p>No.200 Joseph Road, Canada 10008</p>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="contact-info text-center">
+<span class="pe-7s-call"></span>
+<h4>PHONE</h4>
+<p>+44 (0) 800 765 4321</p>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="contact-info text-center">
+<span class="pe-7s-print"></span>
+<h4>FAX</h4>
+<p>+44 (0) 800 777 4321</p>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="contact-info text-center">
+<span class="pe-7s-mail"></span>
+<h4>EMAIL</h4>
+<p><a href="https://demo.web3canvas.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5e373038311e2d2b2c34372a363d2a3227703d3133">[email&#160;protected]</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="map">
+<div class="gmap">
+<div id="map"></div>
+</div>
+</div>
+
+<div class="cform padding-100">
+<div class="container">
+<div class="content-head text-center">
+<h1>Keep in Touch</h1>
+<p>What still bothers you for not getting in touch with us
+<br>No need to wait anymore, contact us now</p>
+<ul id="menu-social">
+<li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+<li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+<li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+<li><a href="https://www.pinterest.com/"><i class="fa fa-pinterest"></i></a></li>
+<li><a href="https://instagram.com/"><i class="fa fa-instagram"></i></a></li>
+</ul>
+</div>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<form class="contact-form" action="https://demo.web3canvas.com/themeforest/polygon/php/contact.php" id="phpcontactform" method="POST">
+<div class="row">
+<div class="col-md-6">
+<input placeholder="Name *" type="text" name="name" title="Please enter your full name" required>
+</div>
+<div class="col-md-6">
+<input placeholder="Email *" type="email" name="email" title="Please enter your email" required>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<input placeholder="Subject *" type="text" name="subject" title="Please enter a subject" required>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<textarea cols="40" rows="10" placeholder="Your Message *" name="message" title="Please enter your message" required></textarea>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<button type="submit" id="js-contact-btn">Submit</button>
+</div>
+</div>
+<div id="js-contact-result" data-success-msg="Thank you. We will be in touch soon." data-error-msg="Oops. Something went wrong."></div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

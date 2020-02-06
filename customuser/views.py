@@ -28,12 +28,12 @@ def reg_req(request):
     if not form.errors:
         new_user = form.save(data)
         login(request, new_user)
-        return HttpResponseRedirect("/lk")
+        return HttpResponseRedirect("/profile")
     else:
         print(form.errors)
         data, errors = {}, {}
         messages.success(request, form.errors)
-    return HttpResponseRedirect("/login?tab=reg")
+    return HttpResponseRedirect("/profile")
 
 def logout_page(request):
     logout(request)

@@ -64,6 +64,7 @@ class User(AbstractUser):
     organization_inst = models.CharField('Ссылка на Instagram', max_length=100, blank=True, null=True)
     organization_yt = models.CharField('Ссылка на YouTube', max_length=100, blank=True, null=True)
     organization_ok = models.CharField('Ссылка на OK', max_length=100, blank=True, null=True)
+    organization_views = models.IntegerField('Просмотров', default=0)
     profile_ok = models.BooleanField(default=False)
 
 
@@ -93,6 +94,12 @@ class User(AbstractUser):
 
         super(User, self).save(*args, **kwargs)
 
+    @property
+    def get_company_avatar(self):
+        if self.organization_avatar and hasattr(self.organization_avatar, 'url'):
+            return self.organization_avatar.url
+        else:
+            return "http://placehold.it/900x500"
 
 
 

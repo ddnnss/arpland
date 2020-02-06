@@ -2,5 +2,67 @@
 {% load static %}
 
 {% block content %}
+    <div class="big-title">
+        <div class="container container-full">
+            <div class="row">
+                <div class="col-md-6 text-uppercase">
+                    <h1>Огранизации</h1>
+                </div>
+                <div class="col-md-6">
+                    <ul class="bread_crumb pull-right">
+                        <li><a href="/">Главная</a></li>
+                        <li>Огранизации</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" class="site-content">
+
+        <div class="container">
+        <div class="content">
+        <div>
+            <div class="blog-entry-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="wpb_wrapper">
+                            <div class="postcontent-type02">
+                                {% for company in all_company %}
+                                    <article class="col-md-4 post type-post blog-entry">
+                                    <div class="post-thumb">
+                                        <img src="{{ company.get_company_avatar }}" class="img-responsive" alt="" />
+                                    </div>
+                                    <div class="postcontent-gird">
+                                        <div class="postcontent-gird-content">
+                                            <div class="blog-entry-meta">
+{#                                                <span class="categories-links"><i class="fa fa-folder-open"></i> <a href="blog.html">Anything</a>, <a href="blog.html">Business</a> </span>#}
+                                                <span class="author vcard"><i class="fa fa-user"></i> admin</span>
+                                            </div>
+                                            <header class="blog-entry-header">
+                                                <h5 class="blog-entry-title"><a href="{%  url 'company' company.organization_name_slug %}" rel="bookmark">{{ company.organization_name }}</a></h5>
+                                            </header>
+                                            <div class="blog-entry-content">
+                                                <p>{{ company.organization_short_description }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="postcontent-gird-bottom">
+                                            <span><i class="fa fa-clock-o"></i>{{ company.date_joined | date }}</span>
+                                            <span class="comments-counts"><i class="fa fa-comment"></i> {{ company.organization_views }}</span>
+                                        </div>
+                                    </div>
+                                </article>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+      </div>
+     </div>
+    </div>
+
 
 {% endblock %}
