@@ -24,15 +24,18 @@ class AdTextPost(models.Model):
 
     def save(self, *args, **kwargs):
         slug = slugify(self.name)
-        testSlug = AdTextPost.objects.filter(name_slug=slug)
         slugRandom = ''
-        if not testSlug:
-            slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
-        self.name_slug = slug + slugRandom
+        if not self.name_slug:
+            testSlug = AdTextPost.objects.filter(name_slug=slug)
+            if testSlug:
+                slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
+                self.name_slug = slug + slugRandom
+            else:
+                self.name_slug = slug
         self.name_lower = self.name.lower()
         super(AdTextPost, self).save(*args, **kwargs)
-    def get_absolute_url(self):
-        return f'/post/{self.name_slug}/'
+    # def get_absolute_url(self):
+    #     return f'/post/{self.name_slug}/'
 
     def __str__(self):
         return 'Текстовое обьявление : %s ' % self.name
@@ -61,19 +64,22 @@ class AdVideoPost(models.Model):
 
     def save(self, *args, **kwargs):
         slug = slugify(self.name)
-        testSlug = AdVideoPost.objects.filter(name_slug=slug)
         slugRandom = ''
-        if not testSlug:
-            slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
-        self.name_slug = slug + slugRandom
+        if not self.name_slug:
+            testSlug = AdVideoPost.objects.filter(name_slug=slug)
+            if testSlug:
+                slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
+                self.name_slug = slug + slugRandom
+            else:
+                self.name_slug = slug
         self.name_lower = self.name.lower()
         super(AdVideoPost, self).save(*args, **kwargs)
-    def get_absolute_url(self):
-        return f'/post/{self.name_slug}/'
+    # def get_absolute_url(self):
+    #     return f'/post/{self.name_slug}/'
 
     def __str__(self):
-        return 'Текстовое обьявление : %s ' % self.name
+        return 'Видео обьявление : %s ' % self.name
 
     class Meta:
-        verbose_name = "Текстовое обьявление"
-        verbose_name_plural = "Текстовые обьявления"
+        verbose_name = "Видео обьявление"
+        verbose_name_plural = "Видео обьявления"

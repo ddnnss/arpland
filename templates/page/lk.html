@@ -6,12 +6,12 @@
         <div class="container container-full">
             <div class="row">
                 <div class="col-md-6 text-uppercase">
-                    <h1>Portfolio - Image</h1>
+                    <h1>Профиль пользователя</h1>
                 </div>
                 <div class="col-md-6">
                     <ul class="bread_crumb pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li>Portfolio - Image</li>
+                        <li><a href="/">Главная</a></li>
+                        <li>Профиль пользователя</li>
                     </ul>
                 </div>
             </div>
@@ -25,10 +25,10 @@
                     <div class="content">
                         <article class="project type-project">
                             <div class="blog-entry-content">
-                                <div class="row">
+                                  <div class="row">
                                     <div class="col-sm-12">
 
-                                        <a href="images/other/pf-03.jpg" class="prettyPhoto"><img src="images/other/pf-01.jpg" class="img-responsive" alt="" /></a>
+                                        <a href="{{ currentUser.organization_avatar }}" class="prettyPhoto"><img src=" {{ user.organization_avatar }}" class="img-responsive" alt="" /></a>
                                     </div>
                                 </div>
                                 <div class="space-top-35"></div>
@@ -36,12 +36,12 @@
                                     <div class="col-sm-4">
                                         <div class="portfolio-metadata">
                                             <div>
-                                                <h5 class="text-uppercase">Date</h5>
-                                                <span class="metadata">September 9, 2015</span>
+                                                <h5 class="text-uppercase">Дата регистрации</h5>
+                                                <span class="metadata">{{ currentUser.date_joined | date }}</span>
                                             </div>
                                             <div>
-                                                <h5 class="text-uppercase">Client</h5>
-                                                <span class="metadata">Mono Creative</span>
+                                                <h5 class="text-uppercase">Представитель</h5>
+                                                <span class="metadata">{{ currentUser.name }}</span>
                                             </div>
                                             <div>
                                                 <h5 class="text-uppercase">Category</h5>
@@ -55,19 +55,21 @@
                                                     <span><a target="_blank" href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></span>
                                                 </div>
                                             </div>
+
                                             <div class="btn-visit-site">
-                                                <a class="bttn text-uppercase" href="https://www.themeforest.net/">Visit Website</a>
+                                                <a class="bttn text-uppercase" href="{% url 'profile_edit' %}">Редактировать профиль</a>
+                                                  <a class="bttn text-uppercase" href="https://www.themeforest.net/">Создать текстовое объявление</a>
+                                                 <a class="bttn text-uppercase" href="https://www.themeforest.net/">Создать видео объявление</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
                                         <div>
-                                            <h4 class="text-uppercase">About the project</h4>
+                                            <h4 class="text-uppercase">Описание организации</h4>
                                             <div class="space-bottom-20"></div>
                                             <div>
                                                 <div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                                    <p>Duis aute irure dolor in repre henderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qu. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    {{ currentUser.organization_description | safe }}
                                                 </div>
                                             </div>
                                         </div>

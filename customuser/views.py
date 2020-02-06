@@ -45,7 +45,7 @@ def update_req(request):
     print(form.errors)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect('/lk')
+        return HttpResponseRedirect('/profile')
     else:
         form = UpdateForm()
-    return HttpResponseRedirect("/lk")
+    return HttpResponseRedirect("/profile-edit")

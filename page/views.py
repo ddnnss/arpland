@@ -4,13 +4,15 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from blog.models import *
 from customuser.forms import *
-
+from .models import *
+from customuser.forms import UpdateForm
 
 
 
 
 
 def index(request):
+    banners = Banner.objects.all()
     try:
         latest_news = BlogPost.objects.all().order_by('-created_at')
     except:
@@ -18,6 +20,12 @@ def index(request):
     return render(request, 'page/index.html', locals())
 
 
+def profile(request):
+    return render(request, 'page/lk.html', locals())
+
+def profile_edit(request):
+    form = UpdateForm(instance=request.user)
+    return render(request, 'page/lk-edit.html', locals())
 def registration(request):
     if request.POST:
         data = request.POST.copy()

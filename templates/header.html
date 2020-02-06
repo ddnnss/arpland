@@ -76,6 +76,15 @@
                                     <li class="menu-item ">
                                         <a href="index.html">КОНТАКТЫ</a>
                                     </li>
+                                    {% if  not request.user.is_authenticated %}
+                                     <li class="menu-item ">
+                                        <a href="{% url 'login' %}">Вход/Регистрация</a>
+                                    </li>
+                                    {% else %}
+                                       <li class="menu-item ">
+                                        <a href="{% url 'profile' %}">Профиль</a>
+                                    </li>
+                                    {% endif %}
 
                                     </li>
                                 </ul>
