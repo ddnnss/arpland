@@ -43,6 +43,8 @@ def companies(request):
 
 def company(request,slug):
     company = User.objects.get(organization_name_slug=slug)
+    all_text_ad = AdTextPost.objects.filter(author=company)
+    all_video_ad = AdVideoPost.objects.filter(author=company)
     return render(request, 'page/org.html', locals())
 
 def profile_edit(request):
