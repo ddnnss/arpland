@@ -4,9 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from blog.models import *
 from customuser.forms import *
+from ads.forms import *
 from .models import *
 from customuser.forms import UpdateForm
 from ads.models import *
+from .forms import *
 
 
 
@@ -47,6 +49,70 @@ def profile_edit(request):
     form = UpdateForm(instance=request.user)
     return render(request, 'page/lk-edit.html', locals())
 
+def profile_add_text(request):
+    if request.POST:
+        data = request.POST.copy()
+        form = CreateAdTextPostForm(request.POST, request.FILES)
+
+        print(form.errors)
+
+        if not form.errors:
+            newAd = form.save(commit=False)
+            newAd.author = request.user
+            newAd.save()
+            print(newAd.id)
+            return HttpResponseRedirect("/profile")
+        else:
+            print(form.errors)
+            data, errors = {}, {}
+            messages.success(request, form.errors)
+            return HttpResponseRedirect("/profile-add-text")
+    form =CreateAdTextPostForm()
+    return render(request, 'page/lk-add-text-ad.html', locals())
+
+def profile_add_video(request):
+    if request.POST:
+        data = request.POST.copy()
+        form = CreateAdVideoPostForm(request.POST, request.FILES)
+
+        print(form.errors)
+
+        if not form.errors:
+            newAd = form.save(commit=False)
+            newAd.author = request.user
+            newAd.save()
+            print(newAd.id)
+            return HttpResponseRedirect("/profile")
+        else:
+            print(form.errors)
+            form = CreateAdVideoPostForm()
+            data, errors = {}, {}
+            messages.success(request, form.errors)
+            return HttpResponseRedirect("/profile-add-video")
+    form = CreateAdVideoPostForm()
+    return render(request, 'page/lk-add-video-ad.html', locals())
+
+def profile_add_bl(request):
+    if request.POST:
+        data = request.POST.copy()
+        form = CreateBL(request.POST, request.FILES)
+
+        print(form.errors)
+
+        if not form.errors:
+            newAd = form.save(commit=False)
+            newAd.author = request.user
+            newAd.save()
+            print(newAd.id)
+            return HttpResponseRedirect("/profile")
+        else:
+            print(form.errors)
+            form = CreateBL()
+            data, errors = {}, {}
+            messages.success(request, form.errors)
+            return HttpResponseRedirect("/profile-add-bl")
+    form = CreateBL()
+    return render(request, 'page/lk-add-bl.html', locals())
 def text_ads(request):
     all_text_ads = AdTextPost.objects.all()
     return render(request, 'page/text_ads.html', locals())
@@ -78,7 +144,7 @@ def registration(request):
         if not form.errors:
             new_user = form.save(data)
             login(request, new_user)
-            return HttpResponseRedirect("/lk")
+            return HttpResponseRedirect("/profile")
         else:
             print(form.errors)
             data, errors = {}, {}
@@ -93,7 +159,7 @@ def login_page(request):
         user = authenticate(username=request.POST.get('email'), password=request.POST.get('password'))
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect("/lk")
+            return HttpResponseRedirect("/profile")
         else:
             messages.success(request, 'Проверьте введенные данные')
             return HttpResponseRedirect('/login')

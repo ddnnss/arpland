@@ -7,7 +7,7 @@ import string
 
 class AdTextPost(models.Model):
     name = models.CharField('Название ', max_length=200, blank=False, null=True)
-    author = models.ForeignKey(User, blank=True, null=True, verbose_name='Автор', on_delete=models.SET_NULL)
+    author = models.ForeignKey(User, blank=True, null=True, verbose_name='Автор', on_delete=models.CASCADE)
     name_slug = models.CharField(max_length=255, blank=True, null=True, editable=False)
     image = models.ImageField('Изображение превью ', upload_to='ad_text_img/', blank=False)
     page_h1 = models.CharField('Тег H1', max_length=255, blank=True, null=True, editable=False)

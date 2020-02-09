@@ -7,7 +7,7 @@ def login_req(request):
     user = authenticate(username=request.POST.get('email'), password=request.POST.get('password'))
     if user is not None:
         login(request, user)
-        return HttpResponseRedirect("/lk")
+        return HttpResponseRedirect("/profile")
     else:
         messages.success(request, 'Проверьте введенные данные')
         return HttpResponseRedirect('/login')
