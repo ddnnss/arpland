@@ -26,14 +26,14 @@
                     <div class="contact-info text-center">
                         <span class="pe-7s-map-marker"></span>
                         <h4>Адрес</h4>
-                        <p>г. Москва, Кировоградкая улица дом 42к1 подъезд 4</p>
+                        {{ contact.address |safe }}
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="contact-info text-center">
                         <span class="pe-7s-print"></span>
                         <h4>Почта</h4>
-                        <p>arpland@mail.ru</p>
+                        {{ contact.email |safe }}
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -41,7 +41,7 @@
 
                          <span class="pe-7s-call"></span>
                         <h4>Телефон</h4>
-                        <p>+7 961 929 67 54 (с 8 до 22)</p>
+                        {{ contact.phone |safe }}
                     </div>
                 </div>
 

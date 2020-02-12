@@ -20,6 +20,8 @@ urlpatterns = [
     path('text-ad/<slug>/', views.text_ad, name='text_ad'),
     path('video-ads/', views.video_ads, name='video_ads'),
     path('video-ad/<slug>/', views.video_ad, name='video_ad'),
+    path('blacklist/', views.blacklist_all, name='blacklist_all'),
+    path('blacklist/<slug>/', views.blacklist, name='blacklist'),
 
 
 

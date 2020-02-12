@@ -3,24 +3,41 @@
     <div class="snap-drawer snap-drawer-left">
         <div class="mobile-menu">
             <ul id="mobile-menu" class="menu">
-                <li class="menu-item ">
-                    <a href="index.html">ГЛАВНАЯ</a>
-                </li>
-                <li class="menu-item ">
-                    <a href="index.html">КОМПАНИИ</a>
-                </li>
-                <li class="menu-item ">
-                    <a href="index.html">ВИДЕО</a>
-                </li>
-                <li class="menu-item ">
-                    <a href="index.html">ОБЪЯВЛЕНИЯ </a>
-                </li>
-                <li class="menu-item ">
-                    <a href="index.html">О НАС</a>
-                </li>
-                <li class="menu-item ">
-                    <a href="index.html">КОНТАКТЫ</a>
-                </li>
+                 <li class="menu-item ">
+                                        <a href="/">ГЛАВНАЯ</a>
+                                    </li>
+                                    <li class="menu-item ">
+                                        <a href="{% url 'companies' %}">КОМПАНИИ</a>
+                                    </li>
+                                    <li class="menu-item ">
+                                        <a href="{% url 'video_ads' %}">ВИДЕО</a>
+                                    </li>
+                                    <li class="menu-item ">
+                                        <a href="{% url 'text_ads' %}">ОБЪЯВЛЕНИЯ </a>
+                                    </li>
+                                  <li class="menu-item ">
+                                        <a href="{% url 'news_all' %}">НОВОСТИ</a>
+                                    </li>
+                                    <li class="menu-item ">
+                                        <a href="{% url 'blacklist_all' %}">ЧЕРНЫЙ СПИСОК</a>
+                                    </li>
+                                    <li class="menu-item ">
+                                        <a href="{% url 'about' %}">О НАС</a>
+                                    </li>
+                                    <li class="menu-item ">
+                                        <a href="{% url 'contact' %}">КОНТАКТЫ</a>
+                                    </li>
+                                    {% if  not request.user.is_authenticated %}
+                                     <li class="menu-item ">
+                                        <a href="{% url 'login' %}">ВХОД/РЕГИСТРАЦИЯ</a>
+                                    </li>
+                                    {% else %}
+                                       <li class="menu-item ">
+                                        <a href="{% url 'profile' %}">ПРОФИЛЬ</a>
+                                    </li>
+                                    {% endif %}
+
+
 
 
             </ul>
@@ -72,6 +89,9 @@
                                     </li>
                                   <li class="menu-item ">
                                         <a href="{% url 'news_all' %}">новости</a>
+                                    </li>
+                                 <li class="menu-item ">
+                                        <a href="{% url 'blacklist_all' %}">ЧЕРНЫЙ СПИСОК</a>
                                     </li>
                                     <li class="menu-item ">
                                         <a href="{% url 'about' %}">О НАС</a>

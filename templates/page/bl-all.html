@@ -1,0 +1,79 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="big-title">
+        <div class="container container-full">
+            <div class="row">
+                <div class="col-md-6 text-uppercase">
+                    <h1>Черный список</h1>
+                </div>
+                <div class="col-md-6">
+                    <ul class="bread_crumb pull-right">
+                        <li><a href="/">Главная</a></li>
+                        <li>Черный список</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content" class="site-content shop-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <p class="shop-content-result-count">
+                        Всего {{ blAll.count }}
+                    </p>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <form class="shop-content-ordering pull-right" method="get">
+                        <select name="orderby" class="orderby">
+                            <option value="menu_order" selected="selected">Нет сортировки</option>
+                            <option value="popularity">Sort by popularity</option>
+                            <option value="rating">Sort by average rating</option>
+                            <option value="date">Sort by newness</option>
+                            <option value="price">Sort by price: low to high</option>
+                            <option value="price-desc">Sort by price: high to low</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div class="products">
+                <div class="row">
+                    {% for bl in blAll %}
+                 <div class="col-md-3 col-sm-6 product type-product sale instock">
+                            <div class="image-product-contain">
+{#                                <span class="onsale">Sale!</span>#}
+                                <img src="{{ bl.image.url }}" class="img-responsive" alt="" />
+{#                                <a href="shop-cart.html" class="bttn add_to_cart_button"><span class="pe-7s-shopbag"></span></a>#}
+                                <a style="left: 110px" href="{% url 'blacklist' bl.name_slug %}" class="prettyPhoto bttn bttn-view-detail skin-fill-blue"><span class="pe-7s-search"></span></a>
+                                <h6 class="text-uppercase">Подробнее</h6>
+                            </div>
+                            <div class="container woo-content-product">
+                                <div class="row">
+                                    <div class="col-xs-12 center">
+                                        <a href="{% url 'blacklist' bl.name_slug %}">
+                                            <h5>{{ bl.name }}</h5>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 center">
+                                        <p>{{ bl.why }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <nav class="shop-content-pagination">
+                    <ul class="page-numbers">
+                        <li><span class="page-numbers current">1</span></li>
+                        <li><a class="page-numbers" href="shop.html">2</a></li>
+                        <li><a class="next page-numbers" href="shop.html">&rarr;</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}

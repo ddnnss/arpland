@@ -32,9 +32,11 @@ def profile(request):
     return render(request, 'page/lk.html', locals())
 
 def about(request):
+    aboutInfo = Contact.objects.first()
     return render(request, 'page/about.html', locals())
 
 def contact(request):
+    contact = Contact.objects.first()
     return render(request, 'page/contact.html', locals())
 
 def companies(request):
@@ -166,3 +168,12 @@ def login_page(request):
             messages.success(request, 'Проверьте введенные данные')
             return HttpResponseRedirect('/login')
     return render(request, 'page/login.html', locals())
+
+
+def blacklist_all(request):
+    blAll = BlackList.objects.filter(isModerated=True)
+    return render(request, 'page/bl-all.html', locals())
+
+def blacklist(request,slug):
+    blItem = BlackList.objects.get(name_slug=slug)
+    return render(request, 'page/bl.html', locals())
