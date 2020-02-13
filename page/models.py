@@ -94,3 +94,16 @@ class Contact(models.Model):
     class Meta:
         verbose_name = "Контакты и О нас"
         verbose_name_plural = "Контакты и О нас"
+
+class Callback(models.Model):
+    name = models.CharField('Имя', max_length=255, blank=False, null=True)
+    email = models.CharField('Почта', max_length=255, blank=False, null=True)
+    text = models.TextField('Сообщение', blank=False, null=True)
+    createdAt = models.DateField('Создано', auto_now_add=True)
+
+    def __str__(self):
+        return f'Форма обратной связи. Отправлена {self.createdAt.strftime("%d/%m/%Y")}'
+
+    class Meta:
+        verbose_name = "Форма обратной связи"
+        verbose_name_plural = "Форма обратной связи"

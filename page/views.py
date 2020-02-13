@@ -36,6 +36,10 @@ def about(request):
     return render(request, 'page/about.html', locals())
 
 def contact(request):
+    if request.POST:
+        Callback.objects.create(name=request.POST.get('name'),
+                                email=request.POST.get('email'),
+                                text=request.POST.get('text'))
     contact = Contact.objects.first()
     return render(request, 'page/contact.html', locals())
 
