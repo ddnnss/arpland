@@ -2,12 +2,11 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from pytils.translit import slugify
 from random import choices
-from customuser.views import User
+from customuser.models import User
 import string
 
 class Banner(models.Model):
     order = models.IntegerField('Порядок отображения', default=1)
-
     image = models.ImageField('Картинка', upload_to='banners/', blank=False, null=True)
     big_text = models.CharField('Большой текст', max_length=255, blank=False, null=True)
     small_text = models.TextField('Маленький текст', blank=False, null=True)
@@ -85,7 +84,6 @@ class Contact(models.Model):
     slider3_num = models.IntegerField('Слайдер3 Значание', blank=False, null=True, default=0)
     slider4_text = models.CharField('Слайдер4 текст', max_length=255, blank=False, null=True)
     slider4_num = models.IntegerField('Слайдер4 Значание', blank=False, null=True, default=0)
-
 
 
     def __str__(self):

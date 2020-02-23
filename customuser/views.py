@@ -1,6 +1,9 @@
 from django.contrib.auth import authenticate,logout,login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
+from django.shortcuts import render
+
+
 from .forms import *
 
 def login_req(request):
@@ -49,3 +52,4 @@ def update_req(request):
     else:
         form = UpdateForm()
     return HttpResponseRedirect("/profile-edit")
+

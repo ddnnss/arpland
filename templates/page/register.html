@@ -29,21 +29,19 @@
    <div class="col-sm-8 col-lg-offset-2 col-lg-8 col-md-12">
     <form action="" method="post" class="contact-form">{% csrf_token %}
      <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
        <input type="text" name="{{ form.name.name }}" required placeholder="Ваше фио *">
       </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
        <input type="email" name="{{ form.email.name }}" required placeholder="Email *">
       </div>
-         <div class="col-md-12">
-       <input type="text" name="{{ form.organization_name.name }}" required placeholder="Название организации *">
-      </div>
+
      </div>
          <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
        <input type="password" name="{{ form.password1.name }}" required placeholder="Пароль">
       </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
        <input type="password" name="{{ form.password2.name }}" required placeholder="Повторите пароль">
       </div>
      </div>

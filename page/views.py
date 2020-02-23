@@ -27,8 +27,8 @@ def index(request):
 
 
 def profile(request):
-    all_text_ad = AdTextPost.objects.filter(author=request.user)
-    all_video_ad = AdVideoPost.objects.filter(author=request.user)
+    all_companies = Company.objects.filter(user=request.user)
+
     return render(request, 'page/lk.html', locals())
 
 def about(request):
@@ -44,11 +44,11 @@ def contact(request):
     return render(request, 'page/contact.html', locals())
 
 def companies(request):
-    all_company = User.objects.all()
+    all_company = Company.objects.all()
     return render(request, 'page/all_orgs.html', locals())
 
-def company(request,slug):
-    company = User.objects.get(organization_name_slug=slug)
+def company_info(request,slug):
+    company = Company.objects.get(name_slug=slug)
     all_text_ad = AdTextPost.objects.filter(author=company)
     all_video_ad = AdVideoPost.objects.filter(author=company)
     return render(request, 'page/org.html', locals())
@@ -57,7 +57,9 @@ def profile_edit(request):
     form = UpdateForm(instance=request.user)
     return render(request, 'page/lk-edit.html', locals())
 
-def profile_add_text(request):
+def profile_add_text(request,id):
+    if id != '0':
+        company = Company.objects.get(id=id)
     if request.POST:
         data = request.POST.copy()
         form = CreateAdTextPostForm(request.POST, request.FILES)
@@ -66,7 +68,7 @@ def profile_add_text(request):
 
         if not form.errors:
             newAd = form.save(commit=False)
-            newAd.author = request.user
+            newAd.author_id = request.POST.get('author')
             newAd.save()
             print(newAd.id)
             return HttpResponseRedirect("/profile")
@@ -76,9 +78,12 @@ def profile_add_text(request):
             messages.success(request, form.errors)
             return HttpResponseRedirect("/profile-add-text")
     form =CreateAdTextPostForm()
+
     return render(request, 'page/lk-add-text-ad.html', locals())
 
-def profile_add_video(request):
+def profile_add_video(request,id):
+    if id != '0':
+        company = Company.objects.get(id=id)
     if request.POST:
         data = request.POST.copy()
         form = CreateAdVideoPostForm(request.POST, request.FILES)
@@ -87,7 +92,7 @@ def profile_add_video(request):
 
         if not form.errors:
             newAd = form.save(commit=False)
-            newAd.author = request.user
+            newAd.author_id = request.POST.get('author')
             newAd.save()
             print(newAd.id)
             return HttpResponseRedirect("/profile")
@@ -181,3 +186,44 @@ def blacklist_all(request):
 def blacklist(request,slug):
     blItem = BlackList.objects.get(name_slug=slug)
     return render(request, 'page/bl.html', locals())
+
+
+def company_reg(request):
+    form = CompanyCreate()
+    if request.POST:
+        print(request.POST)
+        form = CompanyCreate(request.POST, request.FILES)
+        if form.is_valid():
+            print('valid')
+            temp = form.save(commit=False)
+            temp.user = request.user
+            temp.save()
+
+            return HttpResponseRedirect('/profile')
+        else:
+            form = UpdateForm()
+            messages.success(request, form.errors)
+        return HttpResponseRedirect("/company_reg")
+    return render(request, 'page/company_add.html', locals())
+
+def company_update(request,id):
+    company=Company.objects.get(id=id)
+    form = CompanyUpdate(instance=company)
+    if request.POST:
+        print(request.POST)
+        form = CompanyUpdate(request.POST, request.FILES,instance=company)
+        if form.is_valid():
+            print('valid')
+            form.save()
+            return HttpResponseRedirect('/profile')
+        else:
+            form = CompanyUpdate(instance=company)
+            messages.success(request, form.errors)
+        return HttpResponseRedirect("/company_reg")
+
+    return render(request, 'page/company-edit.html', locals())
+def company(request,slug):
+    company = Company.objects.get(name_slug=slug)
+    all_text_ad = AdTextPost.objects.filter(author=company)
+    all_video_ad = AdVideoPost.objects.filter(author=company)
+    return render(request, 'page/company.html', locals())

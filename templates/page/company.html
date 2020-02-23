@@ -6,12 +6,13 @@
         <div class="container container-full">
             <div class="row">
                 <div class="col-md-6 text-uppercase">
-                    <h1>Профиль пользователя</h1>
+                    <h1>{{ company.name }}</h1>
                 </div>
                 <div class="col-md-6">
                     <ul class="bread_crumb pull-right">
                         <li><a href="/">Главная</a></li>
-                        <li>Профиль пользователя</li>
+                        <li><a href="{% url 'profile' %}">Профиль пользователя</a></li>
+                        <li>{{ company.name }}</li>
                     </ul>
                 </div>
             </div>
@@ -28,7 +29,7 @@
                                   <div class="row">
                                     <div class="col-sm-12">
 
-                                        <a href="#" ><img src=" {{ user.get_avatar }}" class="img-responsive" alt="" /></a>
+                                        <a href="#" ><img src=" {{ company.get_company_avatar }}" class="img-responsive" alt="" /></a>
                                     </div>
                                 </div>
                                 <div class="space-top-35"></div>
@@ -37,23 +38,23 @@
                                         <div class="portfolio-metadata">
                                             <div>
                                                 <h5 class="text-uppercase">Дата регистрации</h5>
-                                                <span class="metadata">{{ currentUser.date_joined | date }}</span>
+                                                <span class="metadata">{{ company.created_at | date }}</span>
                                             </div>
                                             <div>
-                                                <h5 class="text-uppercase">ФИО</h5>
-                                                <span class="metadata">{{ currentUser.name }}</span>
+                                                <h5 class="text-uppercase">Представитель</h5>
+                                                <span class="metadata">{{ company.user.name }}</span>
                                             </div>
-{#                                            <div>#}
-{#                                                <h5 class="text-uppercase">Category</h5>#}
-{#                                                <span class="metadata"><a href="#" rel="tag">Photography</a></span>#}
-{#                                            </div>#}
+                                            <div>
+                                                <h5 class="text-uppercase">Category</h5>
+                                                <span class="metadata"><a href="#" rel="tag">Photography</a></span>
+                                            </div>
 
 
                                             <div class="btn-visit-site">
-                                                <a class="bttn text-uppercase" href="{% url 'profile_edit' %}">Редактировать профиль</a>
-                                                  <a class="bttn text-uppercase" href="{% url 'company_reg' %}">Регистрация компании</a>
+                                                <a class="bttn text-uppercase" href="{% url 'company_update' company.id %}">Редактировать компанию</a>
+                                                  <a class="bttn text-uppercase" href="{% url 'profile_add_text' company.id %}">Создать текстовое объявление</a>
+                                                 <a class="bttn text-uppercase" href="{% url 'profile_add_video' company.id %}">Создать видео объявление</a>
 
-                                                 <a class="bttn text-uppercase" href="{% url 'profile_add_bl' %}">Добавть в ЧС</a>
                                             </div>
                                         </div>
                                     </div>
@@ -74,22 +75,39 @@
                         </article>
                     <hr>
                         <div class="related-projects">
-                            <h4 class="related-projects-title text-center">Зарегистрированные организации</h4>
+                            <h4 class="related-projects-title text-center">Размещенные текстовые объявления</h4>
                             <div class="row">
-                                {% for company in all_companies %}
+                                {% for ad in all_text_ad %}
                                   <div class="col-md-3 col-sm-4 text-center">
-                                    <a href="{% url 'company' company.name_slug %}">
+                                    <a href="{% url 'text_ad' ad.name_slug %}">
                                         <div class="project-thumb">
-                                            <img src="{{ company.get_company_avatar }}" class="img-responsive" alt="">
+                                            <img src="{{ ad.image.url }}" class="img-responsive" alt="">
                                         </div>
                                     </a>
-                                    <h5 class="project-title"><a href="{% url 'company' company.name_slug %}">{{ company.name }}</a></h5>
-
+                                    <h5 class="project-title"><a href="{% url 'text_ad' ad.name_slug %}">{{ ad.name }}</a></h5>
+ <span>{{ ad.views }} просмотров</span>
                                 </div>
                                 {% endfor %}
                             </div>
                         </div>
+                        <div class="related-projects">
+                            <h4 class="related-projects-title text-center">Размещенные видео объявления</h4>
+                            <div class="row">
+                                              {% for ad in all_video_ad %}
+                                  <div class="col-md-3 col-sm-4 text-center">
+                                    <a href="{% url 'video_ad' ad.name_slug %}">
+                                        <div class="project-thumb">
+                                            <img src="{{ ad.image.url }}" class="img-responsive" alt="">
+                                        </div>
+                                    </a>
+                                    <h5 class="project-title"><a href="{% url 'video_ad' ad.name_slug %}">{{ ad.name }}</a></h5>
+                                  <span>{{ ad.views }} просмотров</span>
 
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

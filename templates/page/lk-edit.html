@@ -27,7 +27,7 @@
    </div>
    <br>
    <div class="col-sm-8 col-lg-offset-2 col-lg-8 col-md-12">
-    <form action="{% url 'update_req' %}" method="post" class="contact-form">{% csrf_token %}
+    <form action="{% url 'update_req' %}" method="post" class="contact-form" enctype='multipart/form-data'>{% csrf_token %}
     {{ form.media }}
     {{ form.as_p }}
 

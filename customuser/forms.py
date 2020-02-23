@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import User
+from .models import *
 
 
 
@@ -9,7 +9,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('email', 'name', 'password1', 'password2','organization_name' )
+        fields = ('email', 'name', 'password1', 'password2','name',)
         error_messages = {
             'email': {
                 'unique': "Указанный адрес уже кем-то используется",
@@ -23,32 +23,56 @@ class UpdateForm(UserChangeForm):
         fields = ('email',
                   'name',
                   'phone',
-                  'avatar',
-                  'organization_site',
-                  'organization_address',
-                  'organization_description',
-                  'organization_avatar',
-                  'organization_vk',
-                  'organization_inst',
-                  'organization_yt',
-                  'organization_ok',)
+                  'avatar',)
 
         error_messages = {
              'email': {
                  'unique': "Указанный адрес уже кем-то используется",
              },}
 
+class CompanyCreate(forms.ModelForm):
 
+    class Meta:
+        model = Company
+        fields = ('name',
+                  'site',
+                  'address',
+                  'description',
+                  'avatar',
+                  'vk',
+                  'fb',
+                  'inst',
+                  'yt',
+                  'ok',)
+
+class CompanyUpdate(forms.ModelForm):
+   
+    class Meta:
+        model = Company
+
+        fields = ('name',
+                  'site',
+                  'address',
+                  'description',
+                  'avatar',
+                  'vk',
+                  'fb',
+                  'inst',
+                  'yt',)
+
+
+
+
+
+
+#     
 #     name
-#     phone
+#     site
+#     address
+#     description
 #     avatar
-#     organization_name
-#     organization_site
-#     organization_address
-#     organization_description
-#     organization_avatar
-#     organization_vk
-#     organization_fb
-#     organization_inst
-#     organization_yt
-#     organization_ok
+#     vk
+#     fb
+#     inst
+#     yt
+#     ok

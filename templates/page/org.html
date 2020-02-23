@@ -37,38 +37,38 @@
                                         <div class="portfolio-metadata">
                                             <div>
                                                 <h5 class="text-uppercase">Дата регистрации</h5>
-                                                <span class="metadata">{{ company.date_joined | date }}</span>
+                                                <span class="metadata">{{ company.created_at | date }}</span>
                                             </div>
                                             <div>
                                                 <h5 class="text-uppercase">Представитель</h5>
-                                                <span class="metadata">{{ company.name }}</span>
+                                                <span class="metadata">{{ company.user.name }}</span>
                                             </div>
                                             <div>
                                                 <h5 class="text-uppercase">Сайт</h5>
-                                                <span class="metadata"><a href="http://{{ company.organization_site }}" rel="tag">{{ company.organization_site }}</a></span>
+                                                <span class="metadata"><a href="http://{{ company.site }}" rel="tag">{{ company.site }}</a></span>
                                             </div>
 
 
-                                            {% if company.organization_fb or company.organization_inst or company.organization_vk or company.organization_ok or company.organization_yt%}
+                                            {% if company.fb or company.inst or company.vk or company.ok or company.yt%}
                                                 <div>
                                                     <h5 class="text-uppercase">НА связи</h5>
                                                     <div class="metadata">
-                                                        {% if company.organization_fb %}
+                                                        {% if company.fb %}
                                                             <span><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></span>
                                                         {% endif %}
-                                                        {% if company.organization_vk %}
+                                                        {% if company.vk %}
                                                             <span><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-vk"></i></a></span>
                                                         {% endif %}
 
-                                                        {% if company.organization_inst %}
+                                                        {% if company.inst %}
                                                             <span><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-instagram"></i></a></span>
                                                         {% endif %}
 
-                                                        {% if company.organization_ok %}
+                                                        {% if company.ok %}
                                                             <span><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-ok"></i></a></span>
                                                         {% endif %}
 
-                                                        {% if company.organization_yt %}
+                                                        {% if company.yt %}
                                                             <span><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-youtube"></i></a></span>
                                                         {% endif %}
                                                     </div>
@@ -85,7 +85,7 @@
                                             <div class="space-bottom-20"></div>
                                             <div>
                                                 <div>
-                                                    {{ currentUser.organization_description | safe }}
+                                                    {{ currentUser.description | safe }}
                                                 </div>
                                             </div>
                                         </div>
