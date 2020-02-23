@@ -227,3 +227,6 @@ def company(request,slug):
     all_text_ad = AdTextPost.objects.filter(author=company)
     all_video_ad = AdVideoPost.objects.filter(author=company)
     return render(request, 'page/company.html', locals())
+
+def tender(request):
+    return render(request, 'page/investor.html', locals())

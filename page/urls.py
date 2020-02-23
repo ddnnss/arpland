@@ -25,6 +25,7 @@ urlpatterns = [
     path('company_reg', views.company_reg, name='company_reg'),
     path('company_update/<id>', views.company_update, name='company_update'),
     path('company/<slug>', views.company, name='company'),
+    path('tender', views.tender, name='tender'),
 
 
 
