@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import User
+from .models import *
 
 
 #@admin.register(User)
@@ -29,6 +29,7 @@ from .models import User
 #     search_fields = ('email', 'name', 'phone','organization_name ')
 
 admin.site.register(User)
+admin.site.register(Company)
 # order_number
 #     email
 #     name
