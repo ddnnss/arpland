@@ -1,0 +1,54 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+ <div class="big-title">
+  <div class="container container-full">
+   <div class="row">
+    <div class="col-md-6 text-uppercase">
+     <h1>Добавить тендер</h1>
+    </div>
+    <div class="col-md-6">
+     <ul class="bread_crumb pull-right">
+      <li><a href="/">Главная</a></li>
+         <li><a href="{% url 'profile' %}">Профиль</a></li>
+      <li>Добавить тендер</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="page-content">
+  <div class="container">
+   <div class="text-center">
+    <h4 class="custom-head text-uppercase">Добавить тендер</h4>
+   </div>
+   <br>
+   <div class="col-sm-8 col-lg-offset-2 col-lg-8 col-md-12">
+    <form action="{% url 'tender_add' %}" method="post" class="contact-form" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+        <input type="hidden" name="author" value="{{ currentUser.id }}">
+     <div class="row">
+      <div class="col-md-12 text-center">
+       <button type="submit" style="margin-bottom: 10px">Сохранить</button>
+
+      </div>
+     </div>
+     <div class="">
+    {% if messages %}
+                    {% for message in messages %}
+                        <div class="login-form-error">
+                            <p>{{ message }}</p>
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
+     </div>
+    </form>
+   </div>
+  </div>
+ </div>
+{% endblock %}

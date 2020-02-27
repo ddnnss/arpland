@@ -16,3 +16,14 @@ class CreateBL(forms.ModelForm):
                   'file',
                   'isAgreed',
                   )
+
+class CreateTender(forms.ModelForm):
+
+    class Meta:
+        model = Tender
+        fields = ('name',
+                  'image',
+                  'price',
+                  'short_description',
+                  'full_description',
+                  )

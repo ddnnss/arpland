@@ -229,4 +229,29 @@ def company(request,slug):
     return render(request, 'page/company.html', locals())
 
 def tender(request):
+    tender_all = Tender.objects.all()
+    investor_all = Investor.objects.all()
     return render(request, 'page/investor.html', locals())
+
+def tender_add(request):
+    if request.POST:
+        data = request.POST.copy()
+        form = CreateTender(request.POST, request.FILES)
+
+        print(form.errors)
+
+        if not form.errors:
+            newAd = form.save(commit=False)
+            newAd.author = request.user
+            newAd.save()
+            print(newAd.id)
+            return HttpResponseRedirect("/profile")
+        else:
+            print(form.errors)
+            form = CreateTender()
+            data, errors = {}, {}
+            messages.success(request, form.errors)
+            return HttpResponseRedirect("/tender_add")
+    form = CreateTender()
+    return render(request, 'page/lk-add-tender.html', locals())
+

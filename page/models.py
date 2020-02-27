@@ -105,3 +105,46 @@ class Callback(models.Model):
     class Meta:
         verbose_name = "Форма обратной связи"
         verbose_name_plural = "Форма обратной связи"
+
+
+class Investor(models.Model):
+    image = models.ImageField('Фото', upload_to='investor/', blank=False, null=True)
+    name = models.CharField('ФИО', max_length=255, blank=False, null=True)
+    short_description = RichTextUploadingField('Короткое описание', blank=False, null=True)
+    full_description = RichTextUploadingField('Полное описание', blank=False, null=True)
+
+    def __str__(self):
+        return f'Инвестор {self.name}'
+
+    class Meta:
+        verbose_name = "Инвестор"
+        verbose_name_plural = "Инвесторы"
+
+class Tender(models.Model):
+    author = models.ForeignKey(User, blank=True, null=True, verbose_name='Автор', on_delete=models.CASCADE)
+    image = models.ImageField('Картинка', upload_to='tender/', blank=False, null=True)
+    name = models.CharField('Название', max_length=255, blank=False, null=True)
+    name_slug = models.CharField(max_length=255, blank=True, null=True, editable=False)
+    price = models.IntegerField('Цена', default=0)
+
+    short_description = RichTextUploadingField('Короткое описание', blank=False, null=True)
+    full_description = RichTextUploadingField('Полное описание', blank=False, null=True)
+
+    def save(self, *args, **kwargs):
+        slug = slugify(self.name)
+        slugRandom = ''
+        if not self.name_slug:
+            testSlug = Tender.objects.filter(name_slug=slug)
+            if testSlug:
+                slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
+                self.name_slug = slug + slugRandom
+            else:
+                self.name_slug = slug
+
+        super(Tender, self).save(*args, **kwargs)
+    def __str__(self):
+        return f'Тендер {self.name}'
+
+    class Meta:
+        verbose_name = "Тендер"
+        verbose_name_plural = "Тендеры"

@@ -24,10 +24,11 @@
                 ;" class="col-md-6">
                     <h3 style="margin-bottom: 20px">Инвесторы</h3>
                     <div class="row">
+                        {% for investor in investor_all %}
                             <div class="col-md-6 col-sm-6 product type-product sale instock">
                             <div class="image-product-contain">
 {#                                <span class="onsale">Sale!</span>#}
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSTm2fPcFvPoA__zkHYW88TGyhozAWs-WUCk7Uj3cssbR0x0fk3" class="img-responsive" alt="" />
+                                <img src="{{ investor.image.url }}" class="img-responsive" alt="" />
 {#                                <a href="shop-cart.html" class="bttn add_to_cart_button"><span class="pe-7s-shopbag"></span></a>#}
                                 <a style="left: 110px" href="" class="prettyPhoto bttn bttn-view-detail skin-fill-blue"><span class="pe-7s-search"></span></a>
                                 <h6 class="text-uppercase">Подробнее</h6>
@@ -36,46 +37,28 @@
                                 <div class="row">
                                     <div class="col-xs-12 center">
                                         <a href="">
-                                            <h5>Иван Петрович Алексеев</h5>
+                                            <h5>{{ investor.name }}</h5>
                                         </a>
                                     </div>
                                     <div class="col-xs-12 center">
-                                        <p>Инвестор в сфере IT, более 10ти успешных компаний на рынке</p>
+                                        {{ investor.short_description | safe }}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                         <div class="col-md-6 col-sm-6 product type-product sale instock">
-                            <div class="image-product-contain">
-{#                                <span class="onsale">Sale!</span>#}
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR0Zw8frv3vNMPqXvRktmDtWNtAoHPszArstUpEDq_q_09mdrVh" class="img-responsive" alt="" />
-{#                                <a href="shop-cart.html" class="bttn add_to_cart_button"><span class="pe-7s-shopbag"></span></a>#}
-                                <a style="left: 110px" href="" class="prettyPhoto bttn bttn-view-detail skin-fill-blue"><span class="pe-7s-search"></span></a>
-                                <h6 class="text-uppercase">Подробнее</h6>
-                            </div>
-                            <div class="container woo-content-product">
-                                <div class="row">
-                                    <div class="col-xs-12 center">
-                                        <a href="">
-                                            <h5>Сергей Семенов</h5>
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-12 center">
-                                        <p>Инвестор в сфере ресторанного бизнеса</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
+
 
                     </div>
                 </div>
                 <div class="col-md-6">
                     <h3 style="margin-bottom: 20px">Тендеры</h3>
                      <div class="row">
+                         {% for tender in tender_all %}
                             <div class="col-md-6 col-sm-6 product type-product sale instock">
                             <div class="image-product-contain">
 {#                                <span class="onsale">Sale!</span>#}
-                                <img src="https://zanoza-news.com/wp-content/uploads/2016/12/search-engine-optimisation1.jpg" class="img-responsive" alt="" />
+                                <img src="{{ tender.image.url }}" class="img-responsive" alt="" />
 {#                                <a href="shop-cart.html" class="bttn add_to_cart_button"><span class="pe-7s-shopbag"></span></a>#}
                                 <a style="left: 110px" href="" class="prettyPhoto bttn bttn-view-detail skin-fill-blue"><span class="pe-7s-search"></span></a>
                                 <h6 class="text-uppercase">Подробнее</h6>
@@ -84,36 +67,18 @@
                                 <div class="row">
                                     <div class="col-xs-12 center">
                                         <a href="">
-                                            <h5>создание сайта под ключ</h5>
+                                            <h5>{{ tender.name }}</h5>
                                         </a>
                                     </div>
                                     <div class="col-xs-12 center">
-                                        <p>до 50.000 Рублей, кодинг + дизайн</p>
+                                        <div><b>{{ tender.price }} <i class="fa fa-rub"></i></b>
+                                        {{ tender.short_description | safe }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                         <div class="col-md-6 col-sm-6 product type-product sale instock">
-                            <div class="image-product-contain">
-{#                                <span class="onsale">Sale!</span>#}
-                                <img src="https://www.info-expert.ru/images/advancement/tech.jpg" class="img-responsive" alt="" />
-{#                                <a href="shop-cart.html" class="bttn add_to_cart_button"><span class="pe-7s-shopbag"></span></a>#}
-                                <a style="left: 110px" href="" class="prettyPhoto bttn bttn-view-detail skin-fill-blue"><span class="pe-7s-search"></span></a>
-                                <h6 class="text-uppercase">Подробнее</h6>
-                            </div>
-                            <div class="container woo-content-product">
-                                <div class="row">
-                                    <div class="col-xs-12 center">
-                                        <a href="">
-                                            <h5>Оптимизация сайта</h5>
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-12 center">
-                                        <p>5.000 Рублей, SEO + ключи</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                         {% endfor %}
 
                     </div>
                 </div>
